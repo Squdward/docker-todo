@@ -1,24 +1,11 @@
 import { Todo } from './components/todo'
-import { ITodo } from './components/todo/types'
+import { getTodos } from './hooks/getTodos'
 import { NoTodos } from './view/todo/NoTodos/NoTodos'
 import { AddTodo } from './view/todo/addTodo/addTodo'
-import {useState} from "react"
 
 function App() {
-  const [list, setList] = useState<ITodo[]>([
-    {
-      id: '1',
-      name: "Доделать реакт",
-    },
-    {
-      id: '2',
-      name: "Сделать бек",
-    },
-    {
-      id: '3',
-      name: "Создать и настроить докер файл",
-    },
-  ])
+  const todos = getTodos()
+
 
   return (
     <div className={'Todos'}>
@@ -26,10 +13,10 @@ function App() {
         <AddTodo/>
       </div>
 
-      {list.length === 0 && <NoTodos/>}
-      {list.length != 0 &&
+      {todos.length === 0 && <NoTodos/>}
+      {todos.length != 0 &&
         <div className='Todos-grid'>
-          {list.map( i  => <Todo onDelete={() => {}} id={i.id} name={i.name} key={i.id} />)}
+          {todos.map( i  => <Todo onDelete={() => {}} id={i._id} name={i.name} key={i._id} />)}
         </div>
         }
     </div>

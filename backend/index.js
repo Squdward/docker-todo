@@ -2,9 +2,10 @@ import express from 'express';
 import { todoRouter } from './routers/todo.js';
 import mongoose from 'mongoose';
 import { BACKEND_PORT, MONGODB_PORT } from './constants/env.js';
-
+import corse from "cors"
 
 const app = express();
+app.use(corse())
 
 mongoose
 	.connect(`mongodb://root:example@localhost:${MONGODB_PORT}`)
